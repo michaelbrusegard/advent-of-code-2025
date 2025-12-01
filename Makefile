@@ -14,4 +14,10 @@ clean-day$(DAY):
 clean:
 	rm -f */main util.o
 
-.PHONY: clean clean-day$(DAY)
+format:
+	find . -name "*.c" -o -name "*.h" | xargs /Users/michaelbrusegard/.local/share/nvim/mason/bin/clang-format -i
+
+lint:
+	clang-tidy *.c */*.c -- -I.
+
+.PHONY: clean clean-day$(DAY) format lint
