@@ -1,4 +1,4 @@
-#include "../util.h" // Include your util header
+#include "../util.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,7 +15,6 @@ int main() {
         printf("Line %d: %s\n", i + 1, lines[i]);
     }
 
-    // Free memory
     for (int i = 0; i < num_lines; i++) {
         free(lines[i]);
     }
