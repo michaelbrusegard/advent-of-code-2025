@@ -5,6 +5,7 @@
 # Build artifacts
 *.o
 */main
+program
 
 # macOS
 *.dSYM/
