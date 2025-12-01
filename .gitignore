@@ -1,3 +1,11 @@
 # misc
 .DS_Store
 .direnv
+
+# Build artifacts
+*.o
+*/main
+
+# macOS
+*.dSYM/
+Info.plist

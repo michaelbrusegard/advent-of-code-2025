@@ -23,7 +23,6 @@
               gcc
               clang
               lldb
-              valgrind
               clang-tools
             ];
           };
