@@ -20,3 +20,5 @@ Focus on:
 - Providing educational resources for learning concepts
 
 Remember: Advent of Code is designed for humans to solve. Do not give away solutions or write code that directly addresses puzzle inputs/outputs.
+
+For this year my goal is to learn and get better at the C language. I would say that I am at a beginner level in the language.
