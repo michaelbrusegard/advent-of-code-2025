@@ -1,11 +1,14 @@
 #include "../util.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define DIAL_SIZE 100
 #define START_POSITION 50
 
 int main() {
+    chdir("day01");
+
     int num_lines;
     int position = START_POSITION;
     int count = 0;
