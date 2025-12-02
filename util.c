@@ -6,7 +6,7 @@ char **read_lines_from_file(const char *filename, int *num_lines) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         *num_lines = 0;
-        return NULL
+        return NULL;
     }
 
     int capacity = 16;
@@ -15,12 +15,12 @@ char **read_lines_from_file(const char *filename, int *num_lines) {
     if (lines == NULL) {
         fclose(file);
         *num_lines = 0;
-        return NULL
+        return NULL;
     }
 
-    char buffer[1024]
+    char buffer[1024];
 
-        while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
         size_t len = strlen(buffer);
         if (len > 0 && buffer[len - 1] == '\n') {
             buffer[len - 1] = '\0';
