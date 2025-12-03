@@ -31,13 +31,37 @@ int main() {
             count++;
         }
     }
+    printf("Part 1: %d\n", count);
+
+    position = START_POSITION;
+    count = 0;
+
+    for (int i = 0; i < num_lines; i++) {
+        char direction = lines[i][0];
+        int steps = atoi(lines[i] + 1);
+        for (int i = 0; i < steps; i++) {
+            if (direction == 'L') {
+                position -= 1;
+                if (position == -1) {
+                    position = 99;
+                }
+            } else if (direction == 'R') {
+                position += 1;
+                if (position == 100) {
+                    position = 0;
+                }
+            }
+            if (position == 0) {
+                count++;
+            }
+        }
+    }
+    printf("Part 2: %d\n", count);
 
     for (int i = 0; i < num_lines; i++) {
         free(lines[i]);
     }
     free(lines);
-
-    printf("%d\n", count);
 
     return 0;
 }
