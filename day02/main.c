@@ -7,7 +7,7 @@
 int main() {
     chdir("day02");
 
-    int sum = 0;
+    long long sum = 0;
     int num_strings;
     char **strings =
         read_comma_separated_strings_from_file("input.txt", &num_strings);
@@ -19,12 +19,12 @@ int main() {
 
     for (int i = 0; i < num_strings; i++) {
         char *token = strtok(strings[i], "-");
-        int part1 = atoi(token);
+        long long part1 = strtoll(token, NULL, 10);
         token = strtok(NULL, "-");
-        int part2 = atoi(token);
-        for (int j = part1; j <= part2; j++) {
+        long long part2 = strtoll(token, NULL, 10);
+        for (long long j = part1; j <= part2; j++) {
             char *str = malloc(20);
-            sprintf(str, "%d", j);
+            sprintf(str, "%lld", j);
             int len = strlen(str);
             if (len % 2 == 0) {
                 char *first = malloc(len / 2 + 1);
@@ -49,7 +49,7 @@ int main() {
             }
         }
     }
-    printf("Part 1: %d\n", sum);
+    printf("Part 1: %lld\n", sum);
 
     for (int i = 0; i < num_strings; i++) {
         free(strings[i]);
