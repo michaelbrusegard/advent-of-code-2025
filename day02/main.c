@@ -50,6 +50,7 @@ int main() {
         }
     }
     printf("Part 1: %lld\n", sum);
+    sum = 0;
 
     for (int i = 0; i < num_strings; i++) {
         char *token = strings[i];
@@ -58,28 +59,27 @@ int main() {
         token = end + 1;
         long long part2 = strtoll(token, NULL, 10);
         for (long long j = part1; j <= part2; j++) {
-            char *str = malloc(25);
+            char *str = malloc(20);
             sprintf(str, "%lld", j);
             int len = strlen(str);
-            int repeat = 0;
 
+            int is_invalid = 0;
             for (int k = 1; k <= len / 2; k++) {
                 if (len % k != 0)
                     continue;
-
-                int match = 1;
+                char *test = malloc(20);
                 for (int l = 0; l < len; l++) {
-                    if (str[l] != str[l % k]) {
-                        match = 0;
-                        break;
-                    }
+                    test[l] = str[l % k];
                 }
-                if (match) {
-                    repeat = 1;
+                test[len] = '\0';
+                if (strcmp(str, test) == 0) {
+                    is_invalid = 1;
+                }
+                free(test);
+                if (is_invalid)
                     break;
-                }
             }
-            if (repeat) {
+            if (is_invalid) {
                 sum += j;
             }
             free(str);
