@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -117,4 +118,21 @@ cleanup:
     fclose(file);
     *num_strings = 0;
     return NULL;
+}
+
+bool is_in_array(int arr[], int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return true;
+        }
+    }
+    return false;
+}
+
+long long digits_to_number(int arr[], int size) {
+    long long number = 0;
+    for (int i = 0; i < size; i++) {
+        number = number * 10 + arr[i];
+    }
+    return number;
 }

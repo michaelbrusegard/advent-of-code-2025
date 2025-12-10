@@ -8,7 +8,7 @@ int main() {
     chdir("day03");
 
     int num_lines;
-    int sum = 0;
+    long long sum = 0;
     char **lines = read_lines_from_file("input.txt", &num_lines);
 
     if (lines == NULL) {
@@ -37,9 +37,28 @@ int main() {
         sum += desired_num;
     }
 
-    printf("Part 1: %d\n", sum);
+    printf("Part 1: %lld\n", sum);
+
     sum = 0;
-    printf("Part 2: %d\n", sum);
+
+    for (int i = 0; i < num_lines; i++) {
+        int indexes[12] = {-1};
+        int numbers[12] = {0};
+        for (int j = 0; j < 12; j++) {
+            for (int k = 0; k < ((int)strlen(lines[i]) - (13 - j)); k++) {
+                if (is_in_array(indexes, 12, k)) {
+                    continue;
+                }
+                int current_num = lines[i][k] - '0';
+                if (current_num > numbers[j]) {
+                    numbers[j] = current_num;
+                    indexes[j] = k;
+                }
+            }
+        }
+        sum += digits_to_number(numbers, 12);
+    }
+    printf("Part 2: %lld\n", sum);
 
     for (int i = 0; i < num_lines; i++) {
         free(lines[i]);
