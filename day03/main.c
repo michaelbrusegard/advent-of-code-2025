@@ -42,10 +42,13 @@ int main() {
     sum = 0;
 
     for (int i = 0; i < num_lines; i++) {
-        int indexes[12] = {-1};
+        int indexes[12];
+        memset(indexes, -1, sizeof(indexes));
         int numbers[12] = {0};
         for (int j = 0; j < 12; j++) {
-            for (int k = 0; k < ((int)strlen(lines[i]) - (13 - j)); k++) {
+            int start = (j == 0) ? 0 : indexes[j - 1] + 1;
+            int end = strlen(lines[i]) - (12 - j);
+            for (int k = start; k <= end; k++) {
                 if (is_in_array(indexes, 12, k)) {
                     continue;
                 }
