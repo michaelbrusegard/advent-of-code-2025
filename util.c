@@ -1,3 +1,4 @@
+#include "util.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -135,4 +136,49 @@ long long digits_to_number(int arr[], int size) {
         number = number * 10 + arr[i];
     }
     return number;
+}
+
+bool read_grid_from_file(const char *filename,
+                         char grid[MAX_GRID_SIZE][MAX_GRID_SIZE], int *rows,
+                         int *cols) {
+    *rows = 0;
+    *cols = 0;
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        return false;
+    }
+    char line[MAX_GRID_SIZE + 2];
+
+    while (fgets(line, sizeof(line), file) != NULL) {
+        line[strcspn(line, "\n")] = '\0';
+
+        size_t len = strlen(line);
+
+        if (len == 0)
+            continue;
+
+        if (*rows >= MAX_GRID_SIZE) {
+            fprintf(stderr, "Too many rows\n");
+            return false;
+        }
+
+        if (*cols == 0) {
+            *cols = len;
+        } else if (len != *cols) {
+            fprintf(stderr, "Inconsistent line length\n");
+            return false;
+        }
+
+        if (*cols > MAX_GRID_SIZE) {
+            fprintf(stderr, "Too many columns\n");
+            return false;
+        }
+
+        for (int i = 0; i < *cols; i++) {
+            grid[*rows][i] = line[i];
+        }
+
+        (*rows)++;
+    }
+    return true;
 }
